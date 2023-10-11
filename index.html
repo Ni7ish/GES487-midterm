@@ -15,7 +15,6 @@
           #map { min-height: 100%; }
         </style>
 
-        <script type="text/javascript" src="data.js"></script>
 
         <style>
           /* Optional: adjust the values below to change the appearance of the legend */
@@ -65,8 +64,8 @@
 });
 
 var basemaps = {
-    "Gray Canvas": canvas,
-    "Street Map": imagery
+    "Street Map": canvas,
+    "Satellite Map": imagery
 };
 
 		L.control.layers(basemaps).addTo(map);
