@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Midterm Map</title>
+
+         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+           crossorigin=""/>
+
+         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+           crossorigin=""></script>
+		 <style type="text/css">
+          html, body { margin: 0; padding: 0; height: 100%; }
+          #map { min-height: 100%; }
+        </style>
+
+        <script type="text/javascript" src="data.js"></script>
+
+        <style>
+          /* Optional: adjust the values below to change the appearance of the legend */
+          .legend {
+              padding: 6px 8px;
+              line-height: 18px;
+              background: rgba(255,255,255,0.9);
+              box-shadow: 0 0 15px rgba(0,0,0,0.2);
+              border-radius: 5px;
+          }
+
+           /* Optional: adjust the values below to change the appearance of the legend color boxes */
+           .legend i {
+              width: 18px;
+              height: 18px;
+              float: left;
+              margin-right: 8px;
+              opacity: 0.7;
+          }
+        </style>
+    </head>
+
+    <body>
+	
+	<h1 style="text-align:center; font-family:verdana; color: green; background: skyblue;"> Geography & Environmental Studies Points of Interest </h1>
+	<h2 style="text-align:center; font-size:8; font-family:verdana; color: black; background: white;"> (Zoom in for a more accurate view and use layer control on top right to switch map style.) </h2>
+        <div id="map" style="height: 1000px"></div>
+
+        <script type="text/javascript">
+		
+		
+		
+          var map = L.map('map', {
+              center: [41.9799,-87.7180],
+              zoom: 17
+          });
+		  var canvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012',
+               maxZoom: 19,
+               minZoom: 1
+
+            }).addTo(map);
+
+           var imagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+				
+});
+
+var basemaps = {
+    "Gray Canvas": canvas,
+    "Street Map": imagery
+};
+
+		L.control.layers(basemaps).addTo(map);
+          
+		
+				var hqIcon = L.icon({
+				iconUrl: 'globe.png', // url that links to the icon image file
+				iconSize:     [38, 38], // size of the icon image in pixels
+				iconAnchor:   [0, 0], // 
+				popupAnchor:  [0, 0] // point from which the popup should open, relative to the iconAnchor
+			});
+			var libraryIcon = L.icon({
+				iconUrl: 'library.png', // url that links to the icon image file
+				iconSize:     [38, 38], // size of the icon image in pixels
+				iconAnchor:   [0, 0], // 
+				popupAnchor:  [0, 0] // point from which the popup should open, relative to the iconAnchor
+			});
+			var suIcon = L.icon({
+				iconUrl: 'union.png', // url that links to the icon image file
+				iconSize:     [42, 42], // size of the icon image in pixels
+				iconAnchor:   [0, 0], // 
+				popupAnchor:  [0, 0] // point from which the popup should open, relative to the iconAnchor
+			});
+			var parkIcon = L.icon({
+				iconUrl: 'parking.png', // url that links to the icon image file
+				iconSize:     [38, 38], // size of the icon image in pixels
+				iconAnchor:   [0, 0], // 
+				popupAnchor:  [0, 0] // point from which the popup should open, relative to the iconAnchor
+			});
+			var messIcon = L.icon({
+				iconUrl: 'cutlery.png', // url that links to the icon image file
+				iconSize:     [38, 38], // size of the icon image in pixels
+				iconAnchor:   [0, 0], // 
+				popupAnchor:  [0, 0] // point from which the popup should open, relative to the iconAnchor
+			});
+			
+			
+		
+			var marker1 = L.marker([41.9805784,-87.7172437], {icon: hqIcon}).addTo(map);
+			var marker2 = L.marker([41.980435,-87.71905], {icon: libraryIcon}).addTo(map);
+			var marker3 = L.marker([41.98135,-87.7190], {icon: suIcon}).addTo(map);
+			var marker4 = L.marker([41.980480,-87.7205], {icon: parkIcon}).addTo(map);
+			var marker5 = L.marker([41.98135,-87.7185], {icon: messIcon}).addTo(map);
+			
+			
+			
+			var pic1 = '<img src="https://www.neiu.edu/sites/default/files/styles/feature_image/public/news-images/2023/07/21/NEIU%20BBH%20and%20Chicago%20skyline%20-%20banner.jpg?itok=PTTbcAq4">';
+			var pic2 = '<img src="https://www.neiu.edu/sites/default/files/styles/feature_image/public/hub.neiu.edu/news-images/2017/01/19/LOC-main-campus-library.jpg?itok=o60iSavx">';
+			var pic3 = '<img src="https://www.neiu.edu/sites/default/files/styles/feature_image/public/news-images/2020/06/12/Student_Union.jpg?itok=r1-PCUT8">';
+			var pic4 = '<img src="https://mchughconstruction.com/wp-content/uploads/McHugh-Construction_NIU-Parking-Garage-Featured.jpg" width="500">';
+			var pic5 = '<img src="https://www.neiu.edu/sites/default/files/styles/feature_image/public/university-life/unit-dept-homepage-feature-images/2017/09/01/DSC_3009.jpg?itok=a2_XO3EU">';
+			
+
+
+
+			marker1.bindPopup('<p style="color:blue; font-weight:bold"> Bernard J. Brommel Hall. Department of Geography and Environmental and sister departments located here. College of Arts and Sciences HQ. For G&ES, visit: https://www.neiu.edu/academics/college-of-arts-and-sciences/departments/geography-environmental-studies </p>' + pic1);
+			marker2.bindPopup('<p style="color:#FF8A33; font-weight:bold"> Ronal Williams Library - Visit: https://www.neiu.edu/neiu-libraries</p>' + pic2);
+			marker3.bindPopup('<p style="color:#CD0000; font-weight:bold">  Student Union - Alumni Hall - Cafeteria (Lower Level) - Golden Eagles Room - Meeting Rooms - Student Activities - Visit: https://www.neiu.edu/university-life/student-union</p>' + pic3);
+			marker4.bindPopup('<p style="color:#0055A4; font-weight:bold"> Parking Facility - Parking Office - University Police Department - Visit: https://www.neiu.edu/university-life/parking/campus-parking-locations-and-maps</p>' + pic4);
+			marker5.bindPopup('<p style="color:FF8A33; font-weight:bold"> Cafeteria (Lower Level of Student Union) Visit: https://www.neiu.edu/university-life/student-affairs/student-pantry</p>' + pic5);
+			
+			
+		
+		
+        </script>
+   </body>
+</html>
